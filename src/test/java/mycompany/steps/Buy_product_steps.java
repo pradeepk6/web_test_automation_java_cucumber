@@ -1,0 +1,97 @@
+package mycompany.steps;
+
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import model.LineItem;
+import model.Product;
+import mycompany.pageobjects.*;
+import mycompany.pageobjects.CategoryPages.DataStorageAndMemoryPage;
+import mycompany.pageobjects.CategoryPages.UsbStickPage;
+import net.thucydides.core.annotations.Managed;
+import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Properties;
+
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertEquals;
+
+public class Buy_product_steps {
+
+    @Managed
+    WebDriver driver;
+
+    Properties properties;
+
+    HomePage homePage;
+    DataStorageAndMemoryPage dataStorageAndMemoryPage;
+    UsbStickPage usbStickPage;
+    ProductPage productPage;
+    HeaderPage headerPage;
+    BasketSumnmaryPage basketSumnmaryPage;
+    //PopupPage popupPage;
+    CookiePage cookiePage;
+
+    Product product;
+    LineItem lineItem;
+
+    @Before
+    public void setupTestData() {
+        String testDataFile = "src/test/resources/testdata/buy.properties";
+        properties = new Properties();
+        try{
+            properties.load( Files.newInputStream(Paths.get(testDataFile)));
+        }catch(IOException ioe) {
+            fail("Unable to load test data file : " + testDataFile );
+        }
+    }
+
+    @Given("^user has navigated to a product page$")
+    public void user_has_navigated_to_a_product_page() throws Exception {
+
+        homePage = new HomePage(driver);
+        homePage.open();
+        //popupPage = new PopupPage(driver);
+        assertTrue(homePage.isOnPage());
+        homePage.topMenuPage.goto_dataStorageAndMemory();
+
+        dataStorageAndMemoryPage = new DataStorageAndMemoryPage(driver);
+        assertTrue(dataStorageAndMemoryPage.isOnPage());
+        dataStorageAndMemoryPage.clickUsbSticks();
+
+        usbStickPage = new UsbStickPage(driver);
+        assertTrue(usbStickPage.isOnPage());
+        usbStickPage.clickFirstProduct();
+
+        ProductPage productPage = new ProductPage(driver);
+        String name = productPage.getProductName();
+        System.out.println("product name from produc page : " + name);
+        product = new Product();
+        product.setName(productPage.getProductName());
+
+    }
+
+    @When("^user adds one unit of the product to the basket$")
+    public void user_adds_one_unit_of_the_product_to_the_basket() throws Exception {
+        productPage.addToBasket();
+    }
+
+    @When("^navigates to basket summary page$")
+    public void navigates_to_basket_summary_page() throws Exception {
+        headerPage.gotoMyBasket();
+        basketSumnmaryPage = new BasketSumnmaryPage(driver);
+        assertTrue(basketSumnmaryPage.isOnPage());
+    }
+
+    @Then("^user should see the product added to basket$")
+    public void user_should_see_the_product_added_to_the_basket() throws Exception {
+        LineItem firstLineItemInBasket = basketSumnmaryPage.getFirstLineItem();
+        assertEquals(product.getName(),  firstLineItemInBasket.getProduct().getName());
+    }
+
+}

@@ -1,0 +1,14 @@
+image: maven:latest
+
+before_script:
+    - mkdir webdrivers
+    - apt-get install unzip
+    - wget https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip
+    - unzip chromedriver_linux64.zip -d webdrivers
+    - export PATH=$PATH:$PWD/webdrivers
+    - chromedriver -version
+
+test:
+  stage: test
+  script:
+    - mvn verify
