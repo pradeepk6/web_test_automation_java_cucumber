@@ -15,13 +15,4 @@ public class BasePage extends PageObject {
         topMenuPage = new TopMenuPage(driver);
         footerPage = new FooterPage(driver);
     }
-    /*
-    public void checkForPopupAndKill() {
-        int numWindows = super.getDriver().getWindowHandles().size();
-        if(numWindows > 1) {
-            System.out.println("numWindows : " + numWindows);
-            super.getDriver().switchTo().alert().dismiss();
-        }
-    }
-    */
 }

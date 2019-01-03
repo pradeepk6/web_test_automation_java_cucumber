@@ -18,7 +18,7 @@ built with:
 ##### how to run:
 * need Java8 and maven to run.
 * download a latest driver binary into project home directory or add to system path 
-  Run mvn command : mvn verify 
+* Run mvn command : mvn verify
 * browser can be changed in pom.xml(webdriver.driver) or via maven-commandline
 * headless option can be commented out in serenity.properties file
 * for Serenity reports go to target/site/serenity and click index.html

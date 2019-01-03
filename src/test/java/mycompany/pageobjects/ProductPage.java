@@ -30,13 +30,15 @@ public class ProductPage extends BasePage {
     }
 
     public void addUnits(String numUnits) {
+        MyUtils.checkForPopupAndKill(super.getDriver());
+        units.clear();
         units.sendKeys(numUnits);
     }
 
     public void addToBasket() {
         JavascriptExecutor jse = (JavascriptExecutor)super.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", addToBasket_bt);
-        MyUtils.checkForpopupAndKill(super.getDriver());
+        MyUtils.checkForPopupAndKill(super.getDriver());
         jse.executeScript("arguments[0].click();", addToBasket_bt);
     }
 }

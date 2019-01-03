@@ -9,11 +9,4 @@ public class PopupPage extends PageObject {
         super(driver);
     }
 
-    public void checkForPopupAndKill() {
-        int numWindows = super.getDriver().getWindowHandles().size();
-        if(numWindows > 1) {
-            System.out.println("numWindows : " + numWindows);
-            super.getDriver().switchTo().alert().dismiss();
-        }
-    }
 }

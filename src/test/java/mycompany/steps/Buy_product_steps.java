@@ -1,5 +1,6 @@
 package mycompany.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -34,30 +35,19 @@ public class Buy_product_steps {
     ProductPage productPage;
     HeaderPage headerPage;
     BasketSumnmaryPage basketSumnmaryPage;
-    //PopupPage popupPage;
     CookiePage cookiePage;
 
     Product product;
-    LineItem lineItem;
 
     @Before
     public void setupTestData() {
-        String testDataFile = "src/test/resources/testdata/buy.properties";
-        properties = new Properties();
-        try{
-            properties.load( Files.newInputStream(Paths.get(testDataFile)));
-        }catch(IOException ioe) {
-            fail("Unable to load test data file : " + testDataFile );
-        }
     }
 
-    @Given("^user has navigated to a product page$")
-    public void user_has_navigated_to_a_product_page() throws Exception {
+    @Given("^user navigates to a product page$")
+    public void user_navigates_to_a_product_page() throws Exception {
 
         homePage = new HomePage(driver);
         homePage.open();
-        //popupPage = new PopupPage(driver);
-        assertTrue(homePage.isOnPage());
         homePage.topMenuPage.goto_dataStorageAndMemory();
 
         dataStorageAndMemoryPage = new DataStorageAndMemoryPage(driver);
@@ -70,7 +60,7 @@ public class Buy_product_steps {
 
         ProductPage productPage = new ProductPage(driver);
         String name = productPage.getProductName();
-        System.out.println("product name from produc page : " + name);
+        System.out.println("product name from product page : " + name);
         product = new Product();
         product.setName(productPage.getProductName());
 
@@ -92,6 +82,19 @@ public class Buy_product_steps {
     public void user_should_see_the_product_added_to_the_basket() throws Exception {
         LineItem firstLineItemInBasket = basketSumnmaryPage.getFirstLineItem();
         assertEquals(product.getName(),  firstLineItemInBasket.getProduct().getName());
+    }
+
+    @When("^user adds two units of the product to the basket$")
+    public void user_adds_two_units_of_the_product_to_the_basket() throws Exception {
+        productPage.addUnits("2");
+        productPage.addToBasket();
+    }
+
+    @Then("^user should see appropriate units of the product added to basket$")
+    public void user_should_see_appropriate_units_of_the_product_added_to_basket() throws Exception {
+        LineItem firstLineItemInBasket = basketSumnmaryPage.getFirstLineItem();
+        assertEquals(product.getName(),  firstLineItemInBasket.getProduct().getName());
+        assertEquals(2,  firstLineItemInBasket.getQuantity());
     }
 
 }

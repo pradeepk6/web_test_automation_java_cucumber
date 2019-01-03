@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         tags = {},
         glue = "mycompany.steps",
-        features={"src/test/resources/features/buy/buy_a_product.feature"}
+        features="src/test/resources/features/"
         )
 public class SearchAT {
 }

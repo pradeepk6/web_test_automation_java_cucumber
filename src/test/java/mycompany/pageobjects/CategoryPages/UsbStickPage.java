@@ -2,12 +2,12 @@ package mycompany.pageobjects.CategoryPages;
 
 import mycompany.pageobjects.BasePage;
 import mycompany.utils.MyUtils;
-import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
 
 import java.util.List;
@@ -42,17 +42,13 @@ public class UsbStickPage extends BasePage {
     public void clickFirstProduct() {
         List<WebElement> tableRows = resultsTable.findElements(By.tagName("tr"));
         List<WebElement> tableCells = tableRows.get(0).findElements(By.tagName("td"));
-
         WebElement wef = tableCells.get(0);
-       // WebElementFacade wef = (WebElementFacade)tableCells.get(0);
-
-
+        //waitFor(ExpectedConditions.alertIsPresent()).getAlert().dismiss();
         JavascriptExecutor jse = (JavascriptExecutor)super.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", wef);
-        MyUtils.checkForpopupAndKill(super.getDriver());
+        MyUtils.checkForPopupAndKill(super.getDriver());
         wef.click();
         //jse.executeScript("arguments[0].click();", wef);
-
     }
 
 
