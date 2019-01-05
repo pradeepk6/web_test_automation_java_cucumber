@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber.svg?branch=master)](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber)
+?branch=master
 ##### About:
 Java Cucumber selenium-webdriver demo
 
@@ -17,9 +19,9 @@ built with:
 
 ##### how to run:
 * need Java8 and maven to run.
-* download a latest driver binary into project home directory or add to system path 
+* download a latest driver(chrome) binary into project home directory or add to system path
 * Run mvn command : mvn verify
-* browser can be changed in pom.xml(webdriver.driver) or via maven-commandline
+* browser can be changed to for eg: firefox in pom.xml(webdriver.driver) or via maven-commandline
 * headless option can be commented out in serenity.properties file
 * for Serenity reports go to target/site/serenity and click index.html
 
