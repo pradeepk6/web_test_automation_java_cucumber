@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber.svg?branch=master)](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber)
+[![Build Status](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber.svg)](https://travis-ci.org/pradeepk6/web_test_automation_java_cucumber)
 ?branch=master
 ##### About:
 Java Cucumber selenium-webdriver demo
