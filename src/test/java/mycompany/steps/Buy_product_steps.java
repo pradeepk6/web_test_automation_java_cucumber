@@ -51,11 +51,9 @@ public class Buy_product_steps {
         homePage.topMenuPage.goto_dataStorageAndMemory();
 
         dataStorageAndMemoryPage = new DataStorageAndMemoryPage(driver);
-        assertTrue(dataStorageAndMemoryPage.isOnPage());
         dataStorageAndMemoryPage.clickUsbSticks();
 
         usbStickPage = new UsbStickPage(driver);
-        assertTrue(usbStickPage.isOnPage());
         usbStickPage.clickFirstProduct();
 
         ProductPage productPage = new ProductPage(driver);
@@ -75,7 +73,6 @@ public class Buy_product_steps {
     public void navigates_to_basket_summary_page() throws Exception {
         headerPage.gotoMyBasket();
         basketSumnmaryPage = new BasketSumnmaryPage(driver);
-        assertTrue(basketSumnmaryPage.isOnPage());
     }
 
     @Then("^user should see the product added to basket$")

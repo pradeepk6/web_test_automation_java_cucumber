@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        tags = {"~@buy","@search"},
+        tags = {"@buy","~@search"},
         glue = "mycompany.steps",
         features="src/test/resources/features/"
-        )
-public class SearchAT {
+)
+public class BuyAT {
 }

@@ -2,17 +2,19 @@
 Feature: search
 
   Background:
-    Given user navigates to home page
+Given user navigates to home page
+
 
   Scenario Outline: search successfully for a product category
+
     When user searches for product category <category>
     Then user should land in that category page
     Examples:
       | category  |
       | usb sticks |
 
-
   Scenario Outline: typo error in search should show corrected suggestion
+
     When user searches with typo error <typo>
     Then user should see results page with corrected suggestion <suggestion>
   Examples:

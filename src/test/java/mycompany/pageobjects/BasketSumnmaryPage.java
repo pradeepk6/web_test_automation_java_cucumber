@@ -3,6 +3,7 @@ package mycompany.pageobjects;
 import model.LineItem;
 import model.Product;
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +14,14 @@ import java.util.List;
 public class BasketSumnmaryPage  extends BasePage {
 
     @FindBy(css = ".cartTable")
-    public WebElement cartTable;
+    public WebElementFacade cartTable;
 
     public BasketSumnmaryPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean isOnPage() {
+        //return cartTable.isVisible();
         return containsText("My basket");
     }
 

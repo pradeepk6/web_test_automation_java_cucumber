@@ -23,7 +23,8 @@ public class DataStorageAndMemoryPage extends BasePage {
     }
 
     public boolean isOnPage() {
-        return containsText("Data Storage & Memory");
+        return usbSticks.isVisible();
+        //return containsText("Data Storage & Memory");
     }
 
     public void clickUsbSticks(){

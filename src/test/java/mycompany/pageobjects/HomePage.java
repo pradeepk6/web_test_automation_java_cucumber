@@ -16,6 +16,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
     public boolean isOnPage() {
+        //return banner_div.isDisplayed();
         return containsText("RS Advantages");
     }
 }

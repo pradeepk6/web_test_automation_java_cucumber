@@ -45,7 +45,6 @@ public class Search_steps {
     @Then("^user should land in that category page$")
     public void user_should_land_in_that_category_page() throws Exception {
         usbStickPage = new UsbStickPage(driver);
-        assertTrue(usbStickPage.isOnPage());
     }
 
     @When("^user searches with typo error (.*)$")
@@ -57,7 +56,7 @@ public class Search_steps {
     @Then("^user should see results page with corrected suggestion (.*)$")
     public void user_should_see_results_page_with_corrected_suggestion(String suggestion) throws Exception {
         searchResultsPage = new SearchResultsPage(driver);
-        assertTrue(searchResultsPage.containsText(suggestion) && searchResultsPage.containsText("Corrected from"));
+        assertTrue(searchResultsPage.containsAllText(suggestion,"Corrected from"));
     }
 
     @When("^user searches for nonexistent product (.*)$")

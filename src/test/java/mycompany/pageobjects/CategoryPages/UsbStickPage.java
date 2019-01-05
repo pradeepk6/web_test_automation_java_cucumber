@@ -2,6 +2,7 @@ package mycompany.pageobjects.CategoryPages;
 
 import mycompany.pageobjects.BasePage;
 import mycompany.utils.MyUtils;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class UsbStickPage extends BasePage {
 
     @FindBy(id = "results-table")
-    public WebElement resultsTable;
+    public WebElementFacade resultsTable;
 
 
     public UsbStickPage(WebDriver driver) {
@@ -25,6 +26,7 @@ public class UsbStickPage extends BasePage {
     }
 
     public boolean isOnPage() {
+        //return resultsTable.isPresent();
         return containsText("USB Sticks");
     }
 

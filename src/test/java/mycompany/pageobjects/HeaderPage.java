@@ -12,7 +12,6 @@ public class HeaderPage extends PageObject {
     public WebElementFacade cart_link;
 
     //@FindBy(id = "#searchTerm")
-    //*[@id="searchTerm"]
     @FindBy(xpath = "//*[@id='searchTerm']")
     public WebElementFacade search_input;
 
@@ -27,9 +26,8 @@ public class HeaderPage extends PageObject {
     }
 
     public void search(String str){
-        search_input.clear();
-        search_input.sendKeys(str);
-        search_input.submit();
+        MyUtils.checkForPopupAndKill(super.getDriver());
+        search_input.typeAndEnter(str);
     }
 
 
